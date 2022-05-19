@@ -11,7 +11,7 @@ Much of this project is still in Dutch and will be translated to English over ti
 
 I have made a basic layout of the final cable layout design, this is work in progress and a electronic diagram will be added the future.
 ![Image of Arduino circuit layout](https://raw.githubusercontent.com/EwoutHeb/dcs-bios-universal-panel/main/commpanel%20LCD/PinSchema.png)
-This number on the breadboard that the cable conntects to is what port the cable is connected to on the Arduino Mega.
+The number on the breadboard that the cable conntects to is what port the cable is connected to on the Arduino Mega.
 
 The version of dcs-bios I have is modified to use dynamic inputs, wich was made by [Blue73](https://forum.dcs.world/topic/197601-dcs-bios-dynamic-mapping-based-on-aircraft-type-code/). Extra modifications I have made to this will also allow Encoders to also use dynamic decArg & incArg. If needed I also plan to make a modification of the led class to also accept dynamic output.
 
