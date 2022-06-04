@@ -1,16 +1,15 @@
 
 #include <LiquidCrystal.h>
-//#define DCSBIOS_DEFAULT_SERIAL
 #define DCSBIOS_IRQ_SERIAL
 #include "DcsBios.h"
 
 bool g_bRun = true;    //main loop control
 
-int huidigVliegtuig = 0;
+int planeId = 0;
 int maxSubmenu = 1;
 
-int pinA = 51; // Connected to CLK on KY-040
-int pinB = 52; // Connected to DT on KY-040
+int enc5PinA = 51; // Connected to CLK on KY-040
+int enc5PinB = 52; // Connected to DT on KY-040
 int encoderPosCount = 1; 
 int pinALast; 
 int aVal;
@@ -19,29 +18,6 @@ int aVal;
 LiquidCrystal lcd(12, 11, 10,  5,  4,  3 , 2);
 //                RS, RW, En, d4, d5, d6, d7
 
-
-//  Layout ("*" == optioneel)
-//          *LED1   
-//  Knop01  Knop02  Knop03  *Knop13
-//  Knop04  Knop05  Knop06  *Knop14
-//  Knop07  Knop08  Knop09  *Knop15
-//  Knop10  Knop11  Knop12  *Knop16
-//  RotEnc1 RotEnc2 RotEnc3 RotEnc4 RotEnc5
-//  |Knope1 |Knope2 |Knope3 |Knope4 |Knope5 (=> knoppen van RotEnc's)
-
-//  PinLayout ("*" == optioneel)
-//            *38       
-//  22        23        26        *34
-//  24        25        27        *35
-//  28        29        31        *36
-//  32        30        33        *37
-//  39,40,41  42,43,44  45,46,47  48,49,50  51,52,53 (=> Pin1==A, Pin2==B, Pin3==Knop)
-
-// NIEUW
-// 22  23  24  25
-// 26  27  28  29
-// 30  31  32  33
-// 34  35  36  37
 
 #define NUMBER_OF_CONTROLS 36 //26
 
@@ -57,25 +33,25 @@ DcsBios::Switch2Pos switch2_09("UNDEF", 32);
 DcsBios::Switch2Pos switch2_10("UNDEF", 34);
 DcsBios::Switch2Pos switch2_11("UNDEF", 35);
 DcsBios::Switch2Pos switch2_12("UNDEF", 36);
-DcsBios::Switch2Pos switch2_13("UNDEF", 25); //extra knop
-DcsBios::Switch2Pos switch2_14("UNDEF", 29); //extra knop
-DcsBios::Switch2Pos switch2_15("UNDEF", 33); //extra knop
-DcsBios::Switch2Pos switch2_16("UNDEF", 37); //extra knop
-
-// LED heeft nog uitbreiding in code nodig, werkt niet volgends modulair systeem
-//DcsBios::LED led_01(0x0000, 0x0000, 10); //voorbeeld van LED
+DcsBios::Switch2Pos switch2_13("UNDEF", 25);
+DcsBios::Switch2Pos switch2_14("UNDEF", 29);
+DcsBios::Switch2Pos switch2_15("UNDEF", 33);
+DcsBios::Switch2Pos switch2_16("UNDEF", 37);
 
 DcsBios::RotaryEncoder enc_01("UNDEF", "DEC", "INC", 39, 40, 2); //RotEnc1
 DcsBios::RotaryEncoder enc_02("UNDEF", "DEC", "INC", 42, 43, 2); //RotEnc2
 DcsBios::RotaryEncoder enc_03("UNDEF", "DEC", "INC", 45, 46, 2); //RotEnc3
-DcsBios::RotaryEncoder enc_04("UNDEF", "DEC", "INC", 48, 49, 2); //RotEnc4
-DcsBios::RotaryEncoder enc_05("UNDEF", "DEC", "INC", 51, 52, 2); //RotEnc5 //Deze is voor schakelen tussen submenus, wordt niet gebruikt als input
+DcsBios::RotaryEncoder enc_04("UNDEF", "DEC", "INC", 48, 49, 2); //RotEnc4 //Deze is voor schakelen tussen submenus, wordt niet gebruikt als input
+DcsBios::RotaryEncoder enc_05("UNDEF", "DEC", "INC", 51, 52, 2); //RotEnc5 //This one is used for changing submenu's and is generally not used as input
 
-DcsBios::Switch2Pos switch2_e1("UNDEF", 41); //knop van RotEnc1
-DcsBios::Switch2Pos switch2_e2("UNDEF", 44); //knop van RotEnc2
-DcsBios::Switch2Pos switch2_e3("UNDEF", 47); //knop van RotEnc3
-DcsBios::Switch2Pos switch2_e4("UNDEF", 50); //knop van RotEnc4
-DcsBios::Switch2Pos switch2_e5("UNDEF", 53); //knop van RotEnc5
+DcsBios::Switch2Pos switch2_e1("UNDEF", 41); //button of RotEnc1
+DcsBios::Switch2Pos switch2_e2("UNDEF", 44); //button of RotEnc2
+DcsBios::Switch2Pos switch2_e3("UNDEF", 47); //button of RotEnc3
+DcsBios::Switch2Pos switch2_e4("UNDEF", 50); //button of RotEnc4
+DcsBios::Switch2Pos switch2_e5("UNDEF", 53); //button of RotEnc5
+
+// To use LED in dynamic system, extra code is needed that is not currently implemented
+//DcsBios::LED led_01(0x0000, 0x0000, 10); //example of LED
 
 
 struct _controllayout_type {
@@ -126,7 +102,7 @@ struct _controllayout_type {
     enc_04.SetArg(cntrl_name[32], cntrl_name[33]);
     enc_05.SetArg(cntrl_name[34], cntrl_name[35]);
 
-    /*
+    /* backup of the input's names
     switch2_01
     switch2_02
     switch2_03
@@ -771,57 +747,57 @@ void onTacanChannelChange(char* newValue) {
 DcsBios::StringBuffer<4> tacanChannelBuffer(0x1162, onTacanChannelChange);
 
 
-void onMasterModeSelectChange(unsigned int masterPos) {
+void onMasterModeSelectChange(unsigned int newValue) {
   lcd.setCursor(0, 0);
-  lcd.print(ajs37MasterModes[masterPos]);
+  lcd.print(ajs37MasterModes[newValue]);
 }
 DcsBios::IntegerBuffer masterModeSelectBuffer(0x4614, 0xe000, 13, onMasterModeSelectChange);
 
-void onAjs37NavIndicatorData1Change(char* data) {
+void onAjs37NavIndicatorData1Change(char* newValue) {
   lcd.setCursor(0, 01);
-  lcd.print(data);
+  lcd.print(newValue);
 }
 DcsBios::StringBuffer<1> ajs37NavIndicatorData1Buffer(0x46a2, onAjs37NavIndicatorData1Change);
 
-void onAjs37NavIndicatorData2Change(char* data) {
+void onAjs37NavIndicatorData2Change(char* newValue) {
   lcd.setCursor(1, 01);
-  lcd.print(data);
+  lcd.print(newValue);
 }
 DcsBios::StringBuffer<1> ajs37NavIndicatorData2Buffer(0x46a4, onAjs37NavIndicatorData2Change);
 
-void onAjs37NavIndicatorData3Change(char* data) {
+void onAjs37NavIndicatorData3Change(char* newValue) {
   lcd.setCursor(2, 01);
-  lcd.print(data);
+  lcd.print(newValue);
 }
 DcsBios::StringBuffer<1> ajs37NavIndicatorData3Buffer(0x46a6, onAjs37NavIndicatorData3Change);
 
-void onAjs37NavIndicatorData4Change(char* data) {
+void onAjs37NavIndicatorData4Change(char* newValue) {
   lcd.setCursor(3, 01);
-  lcd.print(data);
+  lcd.print(newValue);
 }
 DcsBios::StringBuffer<1> ajs37NavIndicatorData4Buffer(0x46a8, onAjs37NavIndicatorData4Change);
 
-void onAjs37NavIndicatorData5Change(char* data) {
+void onAjs37NavIndicatorData5Change(char* newValue) {
   lcd.setCursor(4, 01);
-  lcd.print(data);
+  lcd.print(newValue);
 }
 DcsBios::StringBuffer<1> ajs37NavIndicatorData5Buffer(0x46aa, onAjs37NavIndicatorData5Change);
 
-void onAjs37NavIndicatorData6Change(char* data) {
+void onAjs37NavIndicatorData6Change(char* newValue) {
   lcd.setCursor(5, 01);
-  lcd.print(data);
+  lcd.print(newValue);
 }
 DcsBios::StringBuffer<1> ajs37NavIndicatorData6Buffer(0x46ac, onAjs37NavIndicatorData6Change);
 
-void onWeaponSelectChange(unsigned int weaponPos) {
+void onWeaponSelectChange(unsigned int newValue) {
   lcd.setCursor(7, 1);
-  lcd.print(ajs37WeaponModes[weaponPos]);
+  lcd.print(ajs37WeaponModes[newValue]);
 }
 DcsBios::IntegerBuffer weaponSelectBuffer(0x4600, 0x00e0, 5, onWeaponSelectChange);
 
 
 void onR863FreqChange(char* newValue) {
-  if (huidigVliegtuig == 3) {
+  if (planeId == 3) {
     lcd.setCursor(0, 0);
     lcd.print(newValue);
   }
@@ -829,7 +805,7 @@ void onR863FreqChange(char* newValue) {
 DcsBios::StringBuffer<7> r863FreqBuffer(0x281c, onR863FreqChange);
 
 void onHdgDegChange(unsigned int newValue) {
-  if (huidigVliegtuig == 3) {
+  if (planeId == 3) {
     lcd.setCursor(0, 1);
     lcd.print(newValue);
   }
@@ -837,7 +813,7 @@ void onHdgDegChange(unsigned int newValue) {
 DcsBios::IntegerBuffer hdgDegBuffer(0x0436, 0x01ff, 0, onHdgDegChange);
 
 void onIasEuChange(char* newValue) {
-  if (huidigVliegtuig == 3) {
+  if (planeId == 3) {
     lcd.setCursor(11, 1);
     lcd.print(newValue);
   }
@@ -846,7 +822,7 @@ DcsBios::StringBuffer<4> iasEuBuffer(0x0424, onIasEuChange);
 
 
 void onFc3FuelAllChange(char* newValue) {
-  if (huidigVliegtuig == -1) {
+  if (planeId == -1) {
     lcd.setCursor(10, 1);
     lcd.print(newValue);
   }
@@ -854,7 +830,7 @@ void onFc3FuelAllChange(char* newValue) {
 DcsBios::StringBuffer<5> fc3FuelAllBuffer(0x6016, onFc3FuelAllChange);
 
 void onFc3IndicatedAirspeedChange(char* newValue) {
-  if (huidigVliegtuig == -1) {
+  if (planeId == -1) {
     lcd.setCursor(0, 0);
     lcd.print(newValue);
   }
@@ -862,7 +838,7 @@ void onFc3IndicatedAirspeedChange(char* newValue) {
 DcsBios::StringBuffer<4> fc3IndicatedAirspeedBuffer(0x6020, onFc3IndicatedAirspeedChange);
 
 void onFc3AltitudeGroundChange(char* newValue) {
-  if (huidigVliegtuig == -1) {
+  if (planeId == -1) {
     lcd.setCursor(0, 1);
     lcd.print(newValue);
   }
@@ -870,7 +846,7 @@ void onFc3AltitudeGroundChange(char* newValue) {
 DcsBios::StringBuffer<6> fc3AltitudeGroundBuffer(0x6006, onFc3AltitudeGroundChange);
 
 
-void tekenSubmode() {
+void drawSubmenu() {
   lcd.setCursor(13, 0);
   lcd.print(encoderPosCount);
   lcd.print("/");
@@ -881,11 +857,11 @@ void tekenSubmode() {
 void setup() {
   lcd.begin(16, 2);
   DcsBios::setup();
-  tekenSubmode();
+  drawSubmenu();
 }
 
-void veranderVliegtuig(int vliegtuig, int submenus) {
-  huidigVliegtuig = vliegtuig;
+void veranderVliegtuig(int newPlaneId, int submenus) {
+  planeId = newPlaneId;
   encoderPosCount = 1;
   maxSubmenu = submenus;
   submenuChange();
@@ -928,9 +904,9 @@ void submenuChange() {
     encoderPosCount = maxSubmenu;
   }
 
-  tekenSubmode();
+  drawSubmenu();
 
-  if (huidigVliegtuig == 1) {
+  if (planeId == 1) {
     lcd.setCursor(0, 0);
     lcd.print("          ");
     switch (encoderPosCount) {
@@ -964,7 +940,7 @@ void submenuChange() {
         break;
     }
   }
-  else if (huidigVliegtuig == 2) {
+  else if (planeId == 2) {
     switch (encoderPosCount) {
       case 1:
         cl_AJS37_1.MakeCurrent();
@@ -974,7 +950,7 @@ void submenuChange() {
         break;
     }
   }
-  else if (huidigVliegtuig == 3) {
+  else if (planeId == 3) {
     switch (encoderPosCount) {
       case 1:
         cl_MI8MT_1.MakeCurrent();
@@ -1000,11 +976,11 @@ void loop() {
     DcsBios::loop();
   }
   
-  aVal = digitalRead(pinA);
+  aVal = digitalRead(enc5PinA);
   if (aVal != pinALast){ // Means the knob is rotating
     // if the knob is rotating, we need to determine direction
     // We do that by reading pin B.
-    if (digitalRead(pinB) != aVal) { // Means pin A Changed first - We're Rotating Clockwise
+    if (digitalRead(enc5PinB) != aVal) { // Means pin A Changed first - We're Rotating Clockwise
       encoderPosCount++;
       submenuChange();
     } else {// Otherwise B changed first and we're moving CCW

@@ -1,0 +1,32 @@
+In here are some notes about where I place each button and rougly where they should be located.
+
+Colloring of the buttons:
+Z = Black
+B = Blue
+G = Green
+W = White
+R = Red
+ZBZG
+BWBG
+ZBZG
+RWRG
+
+
+//  Layout
+//          LED1   
+//  Bttn01  Bttn02  Bttn03  Bttn13
+//  Bttn04  Bttn05  Bttn06  Bttn14
+//  Bttn07  Bttn08  Bttn09  Bttn15
+//  Bttn10  Bttn11  Bttn12  Bttn16
+//  RotEnc1 RotEnc2 RotEnc3 RotEnc4 RotEnc5
+//  |Bttne1 |Bttne2 |Bttne3 |Bttne4 |Bttne5 (=> Buttons from RotEnc's)
+
+
+//  PinLayout
+//       38(LED)       
+// 22  23  24  25
+// 26  27  28  29 (=> buttons)
+// 30  31  32  33
+// 34  35  36  37
+//  39,40,41  42,43,44  45,46,47  48,49,50  51,52,53 (=> Pin1==A, Pin2==B, Pin3==Bttn)
+	(|Rotary encoders)
