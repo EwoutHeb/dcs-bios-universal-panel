@@ -59,11 +59,11 @@ Next it will call the same "submenuChange()" function that is also called when t
 
 ##### List of ID's
 (list will get updated as more are added)
--1: FC3 aircraft
- 0: no aircraft (or one that is not implemented, default case)
- 1: A-10CII
- 2: AJS-37
- 3: Mi-8MTV2
+- -1: FC3 aircraft
+-  0: no aircraft (or one that is not implemented, default case)
+-  1: A-10CII
+-  2: AJS-37
+-  3: Mi-8MTV2
 
 #### Changing submenu
 This will be more about explaining what happens inside the "submenuChange()" method and not how we got here, for that read sections above at "Changing aircraft" & "Loop".
