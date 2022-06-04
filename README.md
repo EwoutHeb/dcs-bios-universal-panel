@@ -10,8 +10,8 @@ The plan is to put all the hardware in a box so that it can be easily stored/use
 
 Much of this project is still in Dutch and will be translated to English over time.
 
-I have made a basic layout of the final cable layout design, this is work in progress and a electronic diagram will be added the future.
-![Image of Arduino circuit layout](https://raw.githubusercontent.com/EwoutHeb/dcs-bios-universal-panel/main/commpanel%20LCD/PinSchema.png)
+I have made a basic layout of the final cable layout design, this is work in progress and an electronic diagram will be added the future.
+![Image of Arduino circuit layout](files/PinSchema.png)
 The number on the breadboard that the cable conntects to is what port the cable is connected to on the Arduino Mega.
 
 The version of dcs-bios I have is modified to use dynamic inputs, wich was made by [Blue73](https://forum.dcs.world/topic/197601-dcs-bios-dynamic-mapping-based-on-aircraft-type-code/). Extra modifications I have made to this will also allow Encoders to also use dynamic decArg & incArg. If needed I also plan to make a modification of the led class to also accept dynamic output, will probably end up using something from [this thread](https://forum.dcs.world/topic/269903-dcs-bios-arduino-code-for-switching-between-modules/?tab=comments#comment-4645082).
@@ -48,7 +48,7 @@ I also draw the current submenu here to give feedback that the program has start
 Two main things happen in the loop.
 First is the DCS-bios loop, this in encased in a if loop so that it can be stopped when the controls are being changed.
 (not sure if stopping this wen updating the controls is really needed, but the person who shared the dynamic mapping has this, so I'm also using it)
-Second thing inside the loop is the code to change the encoder position, I got this from the [KY-040.pdf manual](https://github.com/EwoutHeb/dcs-bios-universal-panel/blob/c262da30e797d89090e9da11cb41e517558865cc/commpanel%20LCD/KY-040%20manual.pdf).
+Second thing inside the loop is the code to change the encoder position, I got this from the [KY-040.pdf manual](https://github.com/EwoutHeb/dcs-bios-universal-panel/blob/6677d9c47476b7e54bfb288776d1d91baec5fe77/files/KY-040%20manual.pdf).
 When it is found that the encoder has moved, it will increase the current encoder position respectively and call the "submenuChange()" function to update the current control layout. More on what happens in this method can be found below in "Changing submenu" section.
 
 ### Changing controls
@@ -61,9 +61,10 @@ Next it will call the same "submenuChange()" function that is also called when t
 (list will get updated as more are added)
 - -1: FC3 aircraft
 -  0: no aircraft (or one that is not implemented, default case)
--  1: A-10CII
+-  1: A-10CII (will probably work with the old A-10C)
 -  2: AJS-37
 -  3: Mi-8MTV2
+-  4: F-14B (will probably work with the F-14A)
 
 #### Changing submenu
 This will be more about explaining what happens inside the "submenuChange()" method and not how we got here, for that read sections above at "Changing aircraft" & "Loop".
