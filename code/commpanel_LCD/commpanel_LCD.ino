@@ -41,7 +41,7 @@ DcsBios::Switch2Pos switch2_16("UNDEF", 37);
 DcsBios::RotaryEncoder enc_01("UNDEF", "DEC", "INC", 39, 40, 2); //RotEnc1
 DcsBios::RotaryEncoder enc_02("UNDEF", "DEC", "INC", 42, 43, 2); //RotEnc2
 DcsBios::RotaryEncoder enc_03("UNDEF", "DEC", "INC", 45, 46, 2); //RotEnc3
-DcsBios::RotaryEncoder enc_04("UNDEF", "DEC", "INC", 48, 49, 2); //RotEnc4 //Deze is voor schakelen tussen submenus, wordt niet gebruikt als input
+DcsBios::RotaryEncoder enc_04("UNDEF", "DEC", "INC", 48, 49, 2); //RotEnc4
 DcsBios::RotaryEncoder enc_05("UNDEF", "DEC", "INC", 51, 52, 2); //RotEnc5 //This one is used for changing submenu's and is generally not used as input
 
 DcsBios::Switch2Pos switch2_e1("UNDEF", 41); //button of RotEnc1
@@ -685,6 +685,124 @@ const char * controlnames_MI8MT_4[] = {
 _controllayout_type cl_MI8MT_4(controlnames_MI8MT_4);
 
 
+const char * controlnames_F14B_1[] = {
+  //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
+  "PLT_EMERG_STORE_JETT",    //switch2_01
+  "PLT_GUN_RATE",    //switch2_02
+  "PLT_SIDEWINDER_COOL",    //switch2_03
+  "PLT_GEAR_LEVER",    //switch2_04
+  "PLT_VDI_MODE_DISP",    //switch2_05
+  "PLT_HUD_MODE_A2A",    //switch2_06
+  "PLT_NAV_STEER_TACAN",    //switch2_07
+  "PLT_NAV_STEER_DEST",    //switch2_08
+  "PLT_HUD_MODE_A2G",    //switch2_09
+  "PLT_NAV_STEER_AWL",    //switch2_10
+  "PLT_NAV_STEER_VECTOR",    //switch2_11
+  "PLT_NAV_STEER_MAN",    //switch2_12
+  "PLT_MISSLE_PREP",    //switch2_13
+  "PLT_HUD_MODE_TAKEOFF",    //switch2_14
+  "PLT_HUD_MODE_CRUISE",    //switch2_15
+  "PLT_HUD_MODE_LAND",    //switch2_16
+      
+  "UNDEF",    //enc_01
+  "UNDEF",    //enc_02
+  "UNDEF",    //enc_03
+  "UNDEF",    //enc_04
+  "UNDEF",    //enc_05
+      
+  "PLT_AUTOPLT_VECTOR_CARRIER",    //switch2_e1 
+  "PLT_AUTOPLT_ALT",    //switch2_e2
+  "PLT_AUTOPLT_HDG",    //switch2_e3
+  "PLT_AUTOPLT_ENGAGE",    //switch2_e4
+  "UNDEF",    //switch2_e5
+  
+  "DEC", "INC", //enc_01 Arg
+  "DEC", "INC", //enc_02 Arg
+  "DEC", "INC", //enc_03 Arg
+  "DEC", "INC", //enc_04 Arg
+  "DEC", "INC", //enc_05 Arg
+};
+_controllayout_type cl_F14B_1(controlnames_F14B_1);
+
+const char * controlnames_F14B_2[] = {
+  //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
+  "PLT_EMERG_STORE_JETT",    //switch2_01
+  "PLT_GUN_RATE",    //switch2_02
+  "PLT_SIDEWINDER_COOL",    //switch2_03
+  "PLT_GEAR_LEVER",    //switch2_04
+  "PLT_VDI_MODE_DISP",    //switch2_05
+  "PLT_HUD_MODE_A2A",    //switch2_06
+  "PLT_NAV_STEER_TACAN",    //switch2_07
+  "PLT_NAV_STEER_DEST",    //switch2_08
+  "PLT_HUD_MODE_A2G",    //switch2_09
+  "PLT_NAV_STEER_AWL",    //switch2_10
+  "PLT_NAV_STEER_VECTOR",    //switch2_11
+  "PLT_NAV_STEER_MAN",    //switch2_12
+  "PLT_MISSLE_PREP",    //switch2_13
+  "PLT_HUD_MODE_TAKEOFF",    //switch2_14
+  "PLT_HUD_MODE_CRUISE",    //switch2_15
+  "PLT_HUD_MODE_LAND",    //switch2_16
+      
+  "UNDEF",    //enc_01
+  "UNDEF",    //enc_02
+  "UNDEF",    //enc_03
+  "UNDEF",    //enc_04
+  "UNDEF",    //enc_05
+      
+  "PLT_TACAN_DIAL_TENS",    //switch2_e1 
+  "PLT_TACAN_DIAL_ONES",    //switch2_e2
+  "PLT_TACAN_CHANNEL",    //switch2_e3
+  "PLT_TACAN_MODE",    //switch2_e4
+  "UNDEF",    //switch2_e5
+  
+  "DEC", "INC", //enc_01 Arg
+  "DEC", "INC", //enc_02 Arg
+  "DEC", "INC", //enc_03 Arg
+  "DEC", "INC", //enc_04 Arg
+  "DEC", "INC", //enc_05 Arg
+};
+_controllayout_type cl_F14B_2(controlnames_F14B_2);
+
+const char * controlnames_F14B_3[] = {
+  //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
+  "PLT_EMERG_STORE_JETT",    //switch2_01
+  "PLT_GUN_RATE",    //switch2_02
+  "PLT_SIDEWINDER_COOL",    //switch2_03
+  "PLT_GEAR_LEVER",    //switch2_04
+  "PLT_VDI_MODE_DISP",    //switch2_05
+  "PLT_HUD_MODE_A2A",    //switch2_06
+  "PLT_NAV_STEER_TACAN",    //switch2_07
+  "PLT_NAV_STEER_DEST",    //switch2_08
+  "PLT_HUD_MODE_A2G",    //switch2_09
+  "PLT_NAV_STEER_AWL",    //switch2_10
+  "PLT_NAV_STEER_VECTOR",    //switch2_11
+  "PLT_NAV_STEER_MAN",    //switch2_12
+  "PLT_MISSLE_PREP",    //switch2_13
+  "PLT_HUD_MODE_TAKEOFF",    //switch2_14
+  "PLT_HUD_MODE_CRUISE",    //switch2_15
+  "PLT_HUD_MODE_LAND",    //switch2_16
+      
+  "UNDEF",    //enc_01
+  "UNDEF",    //enc_02
+  "UNDEF",    //enc_03
+  "UNDEF",    //enc_04
+  "UNDEF",    //enc_05
+      
+  "PLT_UHF1_1_DIAL",    //switch2_e1 
+  "PLT_UHF1_110_DIAL",    //switch2_e2
+  "PLT_UHF1_01_DIAL",    //switch2_e3
+  "PLT_UHF1_025_DIAL",    //switch2_e4
+  "UNDEF",    //switch2_e5
+  
+  "DEC", "INC", //enc_01 Arg
+  "DEC", "INC", //enc_02 Arg
+  "DEC", "INC", //enc_03 Arg
+  "DEC", "INC", //enc_04 Arg
+  "DEC", "INC", //enc_05 Arg
+};
+_controllayout_type cl_F14B_3(controlnames_F14B_3);
+
+
 const char * ajs37MasterModes[] = { 
   "Maintenance",
   "Beredskap  ",
@@ -846,6 +964,55 @@ void onFc3AltitudeGroundChange(char* newValue) {
 DcsBios::StringBuffer<6> fc3AltitudeGroundBuffer(0x6006, onFc3AltitudeGroundChange);
 
 
+void onRioCmdsFlarecntDisplayChange(unsigned int newValue) {
+  if(encoderPosCount == 1) {
+    lcd.setCursor(0, 1);
+    lcd.print(newValue);
+  }
+}
+DcsBios::IntegerBuffer rioCmdsFlarecntDisplayBuffer(0x141c, 0x007f, 0, onRioCmdsFlarecntDisplayChange);
+
+void onRioCmdsChaffcntDisplayChange(unsigned int newValue) {
+  if(encoderPosCount == 1) {
+    lcd.setCursor(0, 8);
+    lcd.print(newValue);
+  }
+}
+DcsBios::IntegerBuffer rioCmdsChaffcntDisplayBuffer(0x13fa, 0xfe00, 9, onRioCmdsChaffcntDisplayChange);
+
+void onHsdTacanRangeSChange(char* newValue) {
+  if(encoderPosCount == 2) {
+    lcd.setCursor(0, 1);
+    lcd.print(newValue);
+  }
+}
+DcsBios::StringBuffer<5> hsdTacanRangeSBuffer(0x1490, onHsdTacanRangeSChange);
+
+void onHsdTacanCrsChange(unsigned int newValue) {
+  if(encoderPosCount == 2) {
+    lcd.setCursor(0, 8);
+    lcd.print(newValue);
+  }
+}
+DcsBios::IntegerBuffer hsdTacanCrsBuffer(0x149e, 0x01ff, 0, onHsdTacanCrsChange);
+
+void onPltUhfRemoteDispChange(char* newValue) {
+  if(encoderPosCount == 3) {
+    lcd.setCursor(0, 1);
+    lcd.print(newValue);
+  }
+}
+DcsBios::StringBuffer<7> pltUhfRemoteDispBuffer(0x1472, onPltUhfRemoteDispChange);
+
+void onPltVuhfRemoteDispChange(char* newValue) {
+  if(encoderPosCount == 3) {
+    lcd.setCursor(0, 8);
+    lcd.print(newValue);
+  }
+}
+DcsBios::StringBuffer<7> pltVuhfRemoteDispBuffer(0x1482, onPltVuhfRemoteDispChange);
+
+
 void drawSubmenu() {
   lcd.setCursor(13, 0);
   lcd.print(encoderPosCount);
@@ -882,6 +1049,9 @@ void onAcftNameChange(char* newValue)  {
   }
   else if (!strcmp(newValue, "Mi-8MT") || !strcmp(newValue, "Mi-8MTV2")) {
     veranderVliegtuig(3, 4);
+  }
+  else if (!strcmp(newValue, "F-14A") || !strcmp(newValue, "F-14A-135-GR") || !strcmp(newValue, "F-14B")) {
+    veranderVliegtuig(4, 3);
   }
   else if (!strcmp(newValue, "A-10A") || !strcmp(newValue, "F-15C") || !strcmp(newValue, "MiG-29A") || !strcmp(newValue, "MiG-29G") || !strcmp(newValue, "MiG-29S") ||
            !strcmp(newValue, "Su-25") || !strcmp(newValue, "Su-25T") || !strcmp(newValue, "Su-27") || !strcmp(newValue, "Su-33") || !strcmp(newValue, "J-11A")) {
@@ -963,6 +1133,27 @@ void submenuChange() {
         break;
       case 4:
         cl_MI8MT_4.MakeCurrent();
+        break;
+    }
+  }
+  else if (planeId == 4) {
+    lcd.setCursor(0, 0);
+    lcd.print("          ");
+    switch (encoderPosCount) {
+      case 1:
+        lcd.setCursor(0, 0);
+        lcd.print("Auto Pilot");
+        cl_F14B_1.MakeCurrent();
+        break;
+      case 2:
+        lcd.setCursor(0, 0);
+        lcd.print("TACAN");
+        cl_F14B_2.MakeCurrent();
+        break;
+      case 3:
+        lcd.setCursor(0, 0);
+        lcd.print("UHF 1");
+        cl_F14B_2.MakeCurrent();
         break;
     }
   }
