@@ -824,52 +824,52 @@ const char * const ajs37WeaponModes[] PROGMEM = {
 
 
 
-void onVhfAmFrequencySChange(char* newValue) {
+void onA10VhfAmFrequencySChange(char* newValue) {
   if(encoderPosCount == 2) {
     lcd.setCursor(0, 1);
     lcd.print(newValue);
   }
 }
-DcsBios::StringBuffer<7> vhfAmFrequencySBuffer(0x12de, onVhfAmFrequencySChange);
+DcsBios::StringBuffer<7> a10VhfAmFrequencySBuffer(0x12de, onA10VhfAmFrequencySChange);
 
-void onUhfFrequencyChange(char* newValue) {
+void onA10UhfFrequencyChange(char* newValue) {
   if(encoderPosCount == 3) {
     lcd.setCursor(0, 1);
     lcd.print(newValue);
   }
 }
-DcsBios::StringBuffer<7> uhfFrequencyBuffer(0x1180, onUhfFrequencyChange);
+DcsBios::StringBuffer<7> a10UhfFrequencyBuffer(0x1180, onA10UhfFrequencyChange);
 
-void onVhfFmFrequencySChange(char* newValue) {
+void onA10VhfFmFrequencySChange(char* newValue) {
   if(encoderPosCount == 4) {
     lcd.setCursor(0, 1);
     lcd.print(newValue);
   }
 }
-DcsBios::StringBuffer<7> vhfFmFrequencySBuffer(0x12e6, onVhfFmFrequencySChange);
+DcsBios::StringBuffer<7> a10VhfFmFrequencySBuffer(0x12e6, onA10VhfFmFrequencySChange);
 
-void onIlsFrequencySChange(char* newValue) {
+void onA10IlsFrequencySChange(char* newValue) {
   if(encoderPosCount == 5) {
     lcd.setCursor(0, 1);
     lcd.print(newValue);
   }
 }
-DcsBios::StringBuffer<6> ilsFrequencySBuffer(0x12d8, onIlsFrequencySChange);
+DcsBios::StringBuffer<6> a10IlsFrequencySBuffer(0x12d8, onA10IlsFrequencySChange);
 
-void onTacanChannelChange(char* newValue) {
+void onA10TacanChannelChange(char* newValue) {
   if(encoderPosCount == 6) {
     lcd.setCursor(0, 1);
     lcd.print(newValue);
   }
 }
-DcsBios::StringBuffer<4> tacanChannelBuffer(0x1162, onTacanChannelChange);
+DcsBios::StringBuffer<4> a10TacanChannelBuffer(0x1162, onA10TacanChannelChange);
 
 
-void onMasterModeSelectChange(unsigned int newValue) {
+void onAjs37MasterModeSelectChange(unsigned int newValue) {
   lcd.setCursor(0, 0);
   lcd.print(ajs37MasterModes[newValue]);
 }
-DcsBios::IntegerBuffer masterModeSelectBuffer(0x4614, 0xe000, 13, onMasterModeSelectChange);
+DcsBios::IntegerBuffer ajs37MasterModeSelectBuffer(0x4614, 0xe000, 13, onAjs37MasterModeSelectChange);
 
 void onAjs37NavIndicatorData1Change(char* newValue) {
   lcd.setCursor(0, 01);
@@ -907,36 +907,36 @@ void onAjs37NavIndicatorData6Change(char* newValue) {
 }
 DcsBios::StringBuffer<1> ajs37NavIndicatorData6Buffer(0x46ac, onAjs37NavIndicatorData6Change);
 
-void onWeaponSelectChange(unsigned int newValue) {
+void onAjs37WeaponSelectChange(unsigned int newValue) {
   lcd.setCursor(7, 1);
   lcd.print(ajs37WeaponModes[newValue]);
 }
-DcsBios::IntegerBuffer weaponSelectBuffer(0x4600, 0x00e0, 5, onWeaponSelectChange);
+DcsBios::IntegerBuffer ajs37WeaponSelectBuffer(0x4600, 0x00e0, 5, onAjs37WeaponSelectChange);
 
 
-void onR863FreqChange(char* newValue) {
+void onMi8R863FreqChange(char* newValue) {
   if (planeId == 3) {
     lcd.setCursor(0, 0);
     lcd.print(newValue);
   }
 }
-DcsBios::StringBuffer<7> r863FreqBuffer(0x281c, onR863FreqChange);
+DcsBios::StringBuffer<7> mi8r863FreqBuffer(0x281c, onMi8R863FreqChange);
 
-void onHdgDegChange(unsigned int newValue) {
+void onMi8HdgDegChange(unsigned int newValue) {
   if (planeId == 3) {
     lcd.setCursor(0, 1);
     lcd.print(newValue);
   }
 }
-DcsBios::IntegerBuffer hdgDegBuffer(0x0436, 0x01ff, 0, onHdgDegChange);
+DcsBios::IntegerBuffer mi8HdgDegBuffer(0x0436, 0x01ff, 0, onMi8HdgDegChange);
 
-void onIasEuChange(char* newValue) {
+void onMi8IasEuChange(char* newValue) {
   if (planeId == 3) {
     lcd.setCursor(11, 1);
     lcd.print(newValue);
   }
 }
-DcsBios::StringBuffer<4> iasEuBuffer(0x0424, onIasEuChange);
+DcsBios::StringBuffer<4> mi8IasEuBuffer(0x0424, onMi8IasEuChange);
 
 
 void onFc3FuelAllChange(char* newValue) {
@@ -964,53 +964,53 @@ void onFc3AltitudeGroundChange(char* newValue) {
 DcsBios::StringBuffer<6> fc3AltitudeGroundBuffer(0x6006, onFc3AltitudeGroundChange);
 
 
-void onRioCmdsFlarecntDisplayChange(unsigned int newValue) {
+void onF14RioCmdsFlarecntDisplayChange(unsigned int newValue) {
   if(encoderPosCount == 1) {
     lcd.setCursor(0, 1);
     lcd.print(newValue);
   }
 }
-DcsBios::IntegerBuffer rioCmdsFlarecntDisplayBuffer(0x141c, 0x007f, 0, onRioCmdsFlarecntDisplayChange);
+DcsBios::IntegerBuffer f14RioCmdsFlarecntDisplayBuffer(0x141c, 0x007f, 0, onF14RioCmdsFlarecntDisplayChange);
 
-void onRioCmdsChaffcntDisplayChange(unsigned int newValue) {
+void onF14RioCmdsChaffcntDisplayChange(unsigned int newValue) {
   if(encoderPosCount == 1) {
     lcd.setCursor(0, 8);
     lcd.print(newValue);
   }
 }
-DcsBios::IntegerBuffer rioCmdsChaffcntDisplayBuffer(0x13fa, 0xfe00, 9, onRioCmdsChaffcntDisplayChange);
+DcsBios::IntegerBuffer f14RioCmdsChaffcntDisplayBuffer(0x13fa, 0xfe00, 9, onF14RioCmdsChaffcntDisplayChange);
 
-void onHsdTacanRangeSChange(char* newValue) {
+void onF14HsdTacanRangeSChange(char* newValue) {
   if(encoderPosCount == 2) {
     lcd.setCursor(0, 1);
     lcd.print(newValue);
   }
 }
-DcsBios::StringBuffer<5> hsdTacanRangeSBuffer(0x1490, onHsdTacanRangeSChange);
+DcsBios::StringBuffer<5> f14HsdTacanRangeSBuffer(0x1490, onF14HsdTacanRangeSChange);
 
-void onHsdTacanCrsChange(unsigned int newValue) {
+void onF14HsdTacanCrsChange(unsigned int newValue) {
   if(encoderPosCount == 2) {
     lcd.setCursor(0, 8);
     lcd.print(newValue);
   }
 }
-DcsBios::IntegerBuffer hsdTacanCrsBuffer(0x149e, 0x01ff, 0, onHsdTacanCrsChange);
+DcsBios::IntegerBuffer f14HsdTacanCrsBuffer(0x149e, 0x01ff, 0, onF14HsdTacanCrsChange);
 
-void onPltUhfRemoteDispChange(char* newValue) {
+void onF14PltUhfRemoteDispChange(char* newValue) {
   if(encoderPosCount == 3) {
     lcd.setCursor(0, 1);
     lcd.print(newValue);
   }
 }
-DcsBios::StringBuffer<7> pltUhfRemoteDispBuffer(0x1472, onPltUhfRemoteDispChange);
+DcsBios::StringBuffer<7> f14PltUhfRemoteDispBuffer(0x1472, onF14PltUhfRemoteDispChange);
 
-void onPltVuhfRemoteDispChange(char* newValue) {
+void onF14PltVuhfRemoteDispChange(char* newValue) {
   if(encoderPosCount == 3) {
     lcd.setCursor(0, 8);
     lcd.print(newValue);
   }
 }
-DcsBios::StringBuffer<7> pltVuhfRemoteDispBuffer(0x1482, onPltVuhfRemoteDispChange);
+DcsBios::StringBuffer<7> f14PltVuhfRemoteDispBuffer(0x1482, onF14PltVuhfRemoteDispChange);
 
 
 void drawSubmenu() {
