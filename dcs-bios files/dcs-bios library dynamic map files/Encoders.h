@@ -71,7 +71,7 @@ namespace DcsBios {
 			//////////////////////////////////////////
 			//	Inserted Code
 			//
-				void SetControl( const char* msg,  const char* msg )
+				void SetControl( const char* msg )
 				{
 					msg_ = msg;
 				}
