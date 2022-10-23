@@ -5,7 +5,7 @@
 
 bool g_bRun = true;    //main loop control
 
-int planeId = 2;
+int planeId = 0;
 int maxSubmenu = 1;
 
 int enc5PinA = 51; // Connected to CLK on KY-040
@@ -15,7 +15,7 @@ int pinALast;
 int aVal;
 
 
-LiquidCrystal lcd(12, 11, 10,  5,  4,  3,  2);
+LiquidCrystal lcd(12, 11, 10,  5,  4,  3 , 2);
 //                RS, RW, En, d4, d5, d6, d7
 
 
@@ -1025,8 +1025,6 @@ void setup() {
   lcd.begin(16, 2);
   DcsBios::setup();
   drawSubmenu();
-  lcd.setCursor(0, 0);
-  lcd.print("DCS V0.1"); // Flightpannel using DCS BIOS V0.1
 }
 
 void veranderVliegtuig(int newPlaneId, int submenus) {
@@ -1042,7 +1040,7 @@ void onAcftNameChange(char* newValue)  {
   delay(500);
 
   lcd.clear();
-  
+    
   if (!strcmp(newValue, "A-10C_2")) { //"A-10C" "A-10C_2"
     veranderVliegtuig(1, 6);
   }
