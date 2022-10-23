@@ -1055,6 +1055,12 @@ void onAcftNameChange(char* newValue)  {
   else if (!strcmp(newValue, "F-14A") || !strcmp(newValue, "F-14A-135-GR") || !strcmp(newValue, "F-14B")) {
     veranderVliegtuig(4, 3);
   }
+  else if (!strcmp(newValue, "F-16CM bl.50")) {
+    veranderVliegtuig(5, 1);
+  }
+  else if (!strcmp(newValue, "AV-8B N/A")) {
+    veranderVliegtuig(6, 1);
+  }
   else if (!strcmp(newValue, "A-10A") || !strcmp(newValue, "F-15C") || !strcmp(newValue, "MiG-29A") || !strcmp(newValue, "MiG-29G") || !strcmp(newValue, "MiG-29S") ||
            !strcmp(newValue, "Su-25") || !strcmp(newValue, "Su-25T") || !strcmp(newValue, "Su-27") || !strcmp(newValue, "Su-33") || !strcmp(newValue, "J-11A")) {
     veranderVliegtuig(-1, 1);
@@ -1158,6 +1164,14 @@ void submenuChange() {
         cl_F14B_2.MakeCurrent();
         break;
     }
+  }
+  else if (planeId == 5) {
+    lcd.setCursor(0, 0);
+    lcd.print("F16");
+  }
+  else if (planeId == 6) {
+    lcd.setCursor(0, 0);
+    lcd.print("AV8");
   }
   else {
     cl_default.MakeCurrent();
