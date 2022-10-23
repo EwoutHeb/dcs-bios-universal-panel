@@ -1026,7 +1026,9 @@ void setup() {
   DcsBios::setup();
   drawSubmenu();
   lcd.setCursor(0, 0);
-  lcd.print("DCS V0.1"); // Flightpannel using DCS BIOS V0.1
+  lcd.print("V0.1"); // Flightpannel using DCS BIOS V0.1
+  lcd.setCursor(0, 1);
+  lcd.print("DCS COMMPANEL"); // Flightpannel using DCS BIOS V0.1
 }
 
 void veranderVliegtuig(int newPlaneId, int submenus) {
@@ -1055,10 +1057,10 @@ void onAcftNameChange(char* newValue)  {
   else if (!strcmp(newValue, "F-14A") || !strcmp(newValue, "F-14A-135-GR") || !strcmp(newValue, "F-14B")) {
     veranderVliegtuig(4, 3);
   }
-  else if (!strcmp(newValue, "F-16CM bl.50")) {
+  else if (!strcmp(newValue, "F-16C_50")) {
     veranderVliegtuig(5, 1);
   }
-  else if (!strcmp(newValue, "AV-8B N/A")) {
+  else if (!strcmp(newValue, "AV8BNA")) {
     veranderVliegtuig(6, 1);
   }
   else if (!strcmp(newValue, "A-10A") || !strcmp(newValue, "F-15C") || !strcmp(newValue, "MiG-29A") || !strcmp(newValue, "MiG-29G") || !strcmp(newValue, "MiG-29S") ||
