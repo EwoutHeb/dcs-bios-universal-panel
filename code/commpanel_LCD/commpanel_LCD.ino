@@ -55,7 +55,7 @@ DcsBios::Switch2Pos switch2_e5("UNDEF", 53); //button of RotEnc5
 
 
 struct _controllayout_type {
-  const char *cntrl_name[NUMBER_OF_CONTROLS];
+  const char * PROGMEM cntrl_name[NUMBER_OF_CONTROLS];
   _controllayout_type(const char *_name[]) {
     for (int i = 0; i < NUMBER_OF_CONTROLS; i++ )
       cntrl_name[i] = _name[i]; 
@@ -174,7 +174,7 @@ struct _controllayout_type {
   "DEC", "INC", //enc_05 Arg
  */
 
-const char * controlnames_default[] = {
+const char * const controlnames_default[] PROGMEM = {
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "UNDEF",    //switch2_01
   "UNDEF",    //switch2_02
@@ -214,7 +214,7 @@ const char * controlnames_default[] = {
 _controllayout_type cl_default(controlnames_default);
 
 
-const char * controlnames_A10C_1[] = { 
+const char * const controlnames_A10C_1[] PROGMEM = { 
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "UFC_1",    //switch2_01
   "UFC_2",    //switch2_02
@@ -253,7 +253,7 @@ const char * controlnames_A10C_1[] = {
 };
 _controllayout_type cl_A10C_1(controlnames_A10C_1);
 
-const char * controlnames_A10C_2[] = { //VHF AM
+const char * const controlnames_A10C_2[] PROGMEM = { //VHF AM
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "UFC_1",    //switch2_01
   "UFC_2",    //switch2_02
@@ -292,7 +292,7 @@ const char * controlnames_A10C_2[] = { //VHF AM
 };
 _controllayout_type cl_A10C_2(controlnames_A10C_2);
 
-const char * controlnames_A10C_3[] = { //UHF
+const char * const controlnames_A10C_3[] PROGMEM = { //UHF
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "UFC_1",    //switch2_01
   "UFC_2",    //switch2_02
@@ -331,7 +331,7 @@ const char * controlnames_A10C_3[] = { //UHF
 };
 _controllayout_type cl_A10C_3(controlnames_A10C_3);
 
-const char * controlnames_A10C_4[] = { //VHF FM
+const char * const controlnames_A10C_4[] PROGMEM = { //VHF FM
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "UFC_1",    //switch2_01
   "UFC_2",    //switch2_02
@@ -370,7 +370,7 @@ const char * controlnames_A10C_4[] = { //VHF FM
 };
 _controllayout_type cl_A10C_4(controlnames_A10C_4);
 
-const char * controlnames_A10C_5[] = { //ILS
+const char * const controlnames_A10C_5[] PROGMEM = { //ILS
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "UFC_1",    //switch2_01
   "UFC_2",    //switch2_02
@@ -409,7 +409,7 @@ const char * controlnames_A10C_5[] = { //ILS
 };
 _controllayout_type cl_A10C_5(controlnames_A10C_5);
 
-const char * controlnames_A10C_6[] = { //TACAN
+const char * const controlnames_A10C_6[] PROGMEM = { //TACAN
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "UFC_1",    //switch2_01
   "UFC_2",    //switch2_02
@@ -449,7 +449,7 @@ const char * controlnames_A10C_6[] = { //TACAN
 _controllayout_type cl_A10C_6(controlnames_A10C_6);
 
 
-const char * controlnames_AJS37_1[] = { 
+const char * const controlnames_AJS37_1[] PROGMEM = { 
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "NAV_SELECT_BTN_B1",    //switch2_01
   "NAV_SELECT_BTN_B2",    //switch2_02
@@ -488,7 +488,7 @@ const char * controlnames_AJS37_1[] = {
 };
 _controllayout_type cl_AJS37_1(controlnames_AJS37_1);
 
-const char * controlnames_AJS37_2[] = { 
+const char * const controlnames_AJS37_2[] PROGMEM = { 
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "NAV_SELECT_BTN_B1",    //switch2_01
   "NAV_SELECT_BTN_B2",    //switch2_02
@@ -528,7 +528,7 @@ const char * controlnames_AJS37_2[] = {
 _controllayout_type cl_AJS37_2(controlnames_AJS37_2);
 
 
-const char * controlnames_MI8MT_1[] = { 
+const char * const controlnames_MI8MT_1[] PROGMEM = { 
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "SIG_CAS2_RED",    //switch2_01
   "SIG_CAS1_RED",    //switch2_02
@@ -567,7 +567,7 @@ const char * controlnames_MI8MT_1[] = {
 };
 _controllayout_type cl_MI8MT_1(controlnames_MI8MT_1);
 
-const char * controlnames_MI8MT_2[] = { 
+const char * const controlnames_MI8MT_2[] PROGMEM = { 
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "DPL_DEC_DEV",    //switch2_01
   "DPL_INC_DEV",    //switch2_02
@@ -606,7 +606,7 @@ const char * controlnames_MI8MT_2[] = {
 };
 _controllayout_type cl_MI8MT_2(controlnames_MI8MT_2);
 
-const char * controlnames_MI8MT_3[] = { 
+const char * const controlnames_MI8MT_3[] PROGMEM = { 
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "DPL_DEC_DEV",    //switch2_01
   "DPL_INC_DEV",    //switch2_02
@@ -645,7 +645,7 @@ const char * controlnames_MI8MT_3[] = {
 };
 _controllayout_type cl_MI8MT_3(controlnames_MI8MT_3);
 
-const char * controlnames_MI8MT_4[] = { 
+const char * const controlnames_MI8MT_4[] PROGMEM = { 
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "UNDEF",    //switch2_01
   "UNDEF",    //switch2_02
@@ -685,7 +685,7 @@ const char * controlnames_MI8MT_4[] = {
 _controllayout_type cl_MI8MT_4(controlnames_MI8MT_4);
 
 
-const char * controlnames_F14B_1[] = {
+const char * const controlnames_F14B_1[] PROGMEM = {
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "PLT_EMERG_STORE_JETT",    //switch2_01
   "PLT_GUN_RATE",    //switch2_02
@@ -724,7 +724,7 @@ const char * controlnames_F14B_1[] = {
 };
 _controllayout_type cl_F14B_1(controlnames_F14B_1);
 
-const char * controlnames_F14B_2[] = {
+const char * const controlnames_F14B_2[] PROGMEM = {
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "PLT_EMERG_STORE_JETT",    //switch2_01
   "PLT_GUN_RATE",    //switch2_02
@@ -763,7 +763,7 @@ const char * controlnames_F14B_2[] = {
 };
 _controllayout_type cl_F14B_2(controlnames_F14B_2);
 
-const char * controlnames_F14B_3[] = {
+const char * const controlnames_F14B_3[] PROGMEM = {
   //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
   "PLT_EMERG_STORE_JETT",    //switch2_01
   "PLT_GUN_RATE",    //switch2_02
@@ -803,7 +803,7 @@ const char * controlnames_F14B_3[] = {
 _controllayout_type cl_F14B_3(controlnames_F14B_3);
 
 
-const char * ajs37MasterModes[] = { 
+const char * const ajs37MasterModes[] PROGMEM = { 
   "Maintenance",
   "Beredskap  ",
   "Navigering ",
@@ -813,7 +813,7 @@ const char * ajs37MasterModes[] = {
   "Landing P/O",
 };
 
-const char * ajs37WeaponModes[] = { 
+const char * const ajs37WeaponModes[] PROGMEM = { 
   " SJO/PLAN",
   "75/MR/DYK",
   "  LUFT/RR",
