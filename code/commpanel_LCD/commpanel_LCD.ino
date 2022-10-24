@@ -803,6 +803,129 @@ const char * const controlnames_F14B_3[] PROGMEM = {
 _controllayout_type cl_F14B_3(controlnames_F14B_3);
 
 
+//F16 mode:
+//MAIN
+//
+const char * const controlnames_F16_1[] PROGMEM = {
+  //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
+  "UNDEF",    //switch2_01
+  "UNDEF",    //switch2_02
+  "UNDEF",    //switch2_03
+  "UNDEF",    //switch2_04
+  "UNDEF",    //switch2_05
+  "UNDEF",    //switch2_06
+  "UNDEF",    //switch2_07
+  "UNDEF",    //switch2_08
+  "UNDEF",    //switch2_09
+  "UNDEF",    //switch2_10
+  "UNDEF",    //switch2_11
+  "UNDEF",    //switch2_12
+  "UNDEF",    //switch2_13
+  "UNDEF",    //switch2_14
+  "UNDEF",    //switch2_15
+  "UNDEF",    //switch2_16
+      
+  "UNDEF",    //enc_01
+  "UNDEF",    //enc_02
+  "UNDEF",    //enc_03
+  "UNDEF",    //enc_04
+  "UNDEF",    //enc_05
+      
+  "UNDEF",    //switch2_e1 
+  "UNDEF",    //switch2_e2
+  "UNDEF",    //switch2_e3
+  "UNDEF",    //switch2_e4
+  "UNDEF",    //switch2_e5
+  
+  "DEC", "INC", //enc_01 Arg
+  "DEC", "INC", //enc_02 Arg
+  "DEC", "INC", //enc_03 Arg
+  "DEC", "INC", //enc_04 Arg
+  "DEC", "INC", //enc_05 Arg
+};
+_controllayout_type cl_F16_1(controlnames_F16_1);
+
+
+const char * const controlnames_AV8B_1[] PROGMEM = {
+  //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
+  "UFC_B1",    //switch2_01
+  "UFC_B2",    //switch2_02
+  "UFC_B3",    //switch2_03
+  "UFC_B4",    //switch2_04
+  "UFC_B5",    //switch2_05
+  "UFC_B6",    //switch2_06
+  "UFC_B7",    //switch2_07
+  "UFC_B8",    //switch2_08
+  "UFC_B9",    //switch2_09
+  "UFC_ENTER",    //switch2_10
+  "UFC_B0",    //switch2_11
+  "UFC_DOT",    //switch2_12
+  "AG_SEL",    //switch2_13
+  "NAV_SEL",    //switch2_14
+  "VSTOL_SEL",    //switch2_15
+  "UFC_EMCOM",    //switch2_16
+      
+  "H2O_MODE",    //enc_01
+  "STO_LEVER",    //enc_02
+  "BINGO_SET",    //enc_03
+  "JETT_MODE",    //enc_04
+  "UNDEF",    //enc_05
+      
+  "CMBT",    //switch2_e1 
+  "FUEL_DUMP_L",    //switch2_e2
+  "FUEL_DUMP_R",    //switch2_e3
+  "JETT_STORES",    //switch2_e4
+  "UNDEF",    //switch2_e5
+  
+  "DEC", "INC", //enc_01 Arg
+  "DEC", "INC", //enc_02 Arg
+  "DEC", "INC", //enc_03 Arg
+  "DEC", "INC", //enc_04 Arg
+  "DEC", "INC", //enc_05 Arg
+};
+_controllayout_type cl_AV8B_1(controlnames_AV8B_1);
+
+const char * const controlnames_AV8B_2[] PROGMEM = {
+  //define all aircraft DCS-BIOS messages including unused controls (e.g. "UNDEF"), needs to have NUMBER_OF_CONTROLS elements
+  "UNDEF",    //switch2_01
+  "UNDEF",    //switch2_02
+  "UNDEF",    //switch2_03
+  "UNDEF",    //switch2_04
+  "UNDEF",    //switch2_05
+  "UNDEF",    //switch2_06
+  "UNDEF",    //switch2_07
+  "UNDEF",    //switch2_08
+  "UNDEF",    //switch2_09
+  "UNDEF",    //switch2_10
+  "UNDEF",    //switch2_11
+  "UNDEF",    //switch2_12
+  "AG_SEL",    //switch2_13
+  "NAV_SEL",    //switch2_14
+  "VSTOL_SEL",    //switch2_15
+  "UFC_EMCOM",    //switch2_16
+      
+  "H2O_MODE",    //enc_01
+  "STO_LEVER",    //enc_02
+  "BINGO_SET",    //enc_03
+  "JETT_MODE",    //enc_04
+  "UNDEF",    //enc_05
+      
+  "CMBT",    //switch2_e1 
+  "FUEL_DUMP_L",    //switch2_e2
+  "FUEL_DUMP_R",    //switch2_e3
+  "JETT_STORES",    //switch2_e4
+  "UNDEF",    //switch2_e5
+  
+  "DEC", "INC", //enc_01 Arg
+  "DEC", "INC", //enc_02 Arg
+  "DEC", "INC", //enc_03 Arg
+  "DEC", "INC", //enc_04 Arg
+  "DEC", "INC", //enc_05 Arg
+};
+_controllayout_type cl_AV8B_2(controlnames_AV8B_2);
+
+
+
 const char * const ajs37MasterModes[] PROGMEM = { 
   "Maintenance",
   "Beredskap  ",
@@ -872,37 +995,37 @@ void onAjs37MasterModeSelectChange(unsigned int newValue) {
 DcsBios::IntegerBuffer ajs37MasterModeSelectBuffer(0x4614, 0xe000, 13, onAjs37MasterModeSelectChange);
 
 void onAjs37NavIndicatorData1Change(char* newValue) {
-  lcd.setCursor(0, 01);
+  lcd.setCursor(0, 1);
   lcd.print(newValue);
 }
 DcsBios::StringBuffer<1> ajs37NavIndicatorData1Buffer(0x46a2, onAjs37NavIndicatorData1Change);
 
 void onAjs37NavIndicatorData2Change(char* newValue) {
-  lcd.setCursor(1, 01);
+  lcd.setCursor(1, 1);
   lcd.print(newValue);
 }
 DcsBios::StringBuffer<1> ajs37NavIndicatorData2Buffer(0x46a4, onAjs37NavIndicatorData2Change);
 
 void onAjs37NavIndicatorData3Change(char* newValue) {
-  lcd.setCursor(2, 01);
+  lcd.setCursor(2, 1);
   lcd.print(newValue);
 }
 DcsBios::StringBuffer<1> ajs37NavIndicatorData3Buffer(0x46a6, onAjs37NavIndicatorData3Change);
 
 void onAjs37NavIndicatorData4Change(char* newValue) {
-  lcd.setCursor(3, 01);
+  lcd.setCursor(3, 1);
   lcd.print(newValue);
 }
 DcsBios::StringBuffer<1> ajs37NavIndicatorData4Buffer(0x46a8, onAjs37NavIndicatorData4Change);
 
 void onAjs37NavIndicatorData5Change(char* newValue) {
-  lcd.setCursor(4, 01);
+  lcd.setCursor(4, 1);
   lcd.print(newValue);
 }
 DcsBios::StringBuffer<1> ajs37NavIndicatorData5Buffer(0x46aa, onAjs37NavIndicatorData5Change);
 
 void onAjs37NavIndicatorData6Change(char* newValue) {
-  lcd.setCursor(5, 01);
+  lcd.setCursor(5, 1);
   lcd.print(newValue);
 }
 DcsBios::StringBuffer<1> ajs37NavIndicatorData6Buffer(0x46ac, onAjs37NavIndicatorData6Change);
@@ -1013,6 +1136,14 @@ void onF14PltVuhfRemoteDispChange(char* newValue) {
 DcsBios::StringBuffer<7> f14PltVuhfRemoteDispBuffer(0x1482, onF14PltVuhfRemoteDispChange);
 
 
+void onAv8bUfcScratchpadChange(char* newValue) {
+  lcd.setCursor(0, 1);
+  lcd.print(newValue);
+}
+DcsBios::StringBuffer<12> av8bUfcScratchpadBuffer(0x7984, onAv8bUfcScratchpadChange);
+
+
+
 void drawSubmenu() {
   lcd.setCursor(13, 0);
   lcd.print(encoderPosCount);
@@ -1061,7 +1192,7 @@ void onAcftNameChange(char* newValue)  {
     veranderVliegtuig(5, 1);
   }
   else if (!strcmp(newValue, "AV8BNA")) {
-    veranderVliegtuig(6, 1);
+    veranderVliegtuig(6, 2);
   }
   else if (!strcmp(newValue, "A-10A") || !strcmp(newValue, "F-15C") || !strcmp(newValue, "MiG-29A") || !strcmp(newValue, "MiG-29G") || !strcmp(newValue, "MiG-29S") ||
            !strcmp(newValue, "Su-25") || !strcmp(newValue, "Su-25T") || !strcmp(newValue, "Su-27") || !strcmp(newValue, "Su-33") || !strcmp(newValue, "J-11A")) {
@@ -1173,7 +1304,18 @@ void submenuChange() {
   }
   else if (planeId == 6) {
     lcd.setCursor(0, 0);
-    lcd.print("AV8");
+    lcd.print("          ");
+    switch (encoderPosCount) {
+      case 1:
+        lcd.setCursor(0, 0);
+        lcd.print("MAIN");
+        cl_AV8B_1.MakeCurrent();
+        break;
+      case 2:
+        lcd.setCursor(0, 0);
+        lcd.print("MISC");
+        cl_AV8B_2.MakeCurrent();
+        break;
   }
   else {
     cl_default.MakeCurrent();
